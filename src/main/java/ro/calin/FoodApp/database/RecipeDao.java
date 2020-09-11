@@ -8,4 +8,6 @@ public interface RecipeDao extends CrudRepository<Recipe, Integer> {
     Integer countAllByName(String name);
 
     Integer countAllByUrl(String url);
+
+    Recipe findById(int id);
 }

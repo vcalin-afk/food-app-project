@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ro.calin.FoodApp.database.Ingredient;
 import ro.calin.FoodApp.database.Recipe;
 import ro.calin.FoodApp.database.RecipeDao;
+import ro.calin.FoodApp.security.UserSession;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,6 +16,9 @@ public class RecipeService {
 
     @Autowired
     RecipeDao recipeDao;
+
+    @Autowired
+    UserSession userSession;
 
     public void saveRecipe(Recipe recipe) {
         recipeDao.save(recipe);
@@ -48,6 +52,20 @@ public class RecipeService {
         }
 
         return new ArrayList<>(new HashSet<>(recipeForUserPage));
+    }
+
+    public Recipe findById(int id) {
+        return recipeDao.findById(id);
+    }
+
+    public List<Recipe> getRecipesForFavoritePage() {
+        List<Recipe> recipeListForPage = new ArrayList<>();
+        List<Integer> recipeList = userSession.getFavoriteRecipes();
+        for (Integer id: recipeList) {
+            recipeListForPage.add(this.findById(id));
+        }
+
+        return new ArrayList<>(new HashSet<>(recipeListForPage));
     }
 
 }

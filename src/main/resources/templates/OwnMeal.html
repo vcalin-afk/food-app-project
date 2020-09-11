@@ -177,6 +177,7 @@
           <i class="fas fa-user amber-text" ><span class="ml-2" th:text="${welcomeMessage}"></span></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="userAccount">
+          <a class="dropdown-item elegant-text" href="/favorite-recipes">Retete Favorite</a>
           <a class="dropdown-item elegant-text" href="/logout-action">Deconecteaza-te</a>
         </div>
       </li>
@@ -192,7 +193,7 @@
   <div class="row">
     <div class="col-8">
       <h1 class="text-center mb-3">Alege ingredientele pe care le ai la dispozitie</h1>
-      <form method="post" action="/OwnMeal/show-recipes">
+      <form method="get" action="/OwnMeal/show-recipes">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active elegant-text" id="produse-lactate-tab" data-toggle="tab" href="#produse-lactate" role="tab" aria-controls="produse-lactate"
@@ -437,8 +438,15 @@
                     <li th:text="${d.description}"></li>
                 </ul>
             </p>
+          <form method="get" action="/save-favorite-recipe">
+            <label>
+                <input name="recipeId" hidden th:value="${r.id}">
+            </label>
+          <button class="btn btn-amber" type="submit"><i class="fas fa-heart mr-2"></i>Salveaza la Favorite</button>
+          </form>
         </div>
     </div>
+
 
 </div>
 
