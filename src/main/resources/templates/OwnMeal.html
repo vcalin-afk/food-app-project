@@ -68,10 +68,10 @@
     }
 
     /*// Large devices (desktops, 992px and up)*/
-    @media (min-width: 992px) { ... }
+    /*@media (min-width: 992px) { ... }*/
 
     /*// Extra large devices (large desktops, 1200px and up)*/
-    @media (min-width: 1200px) { ... }
+    /*@media (min-width: 1200px) { ... }*/
 
     html, body, header {
       height: 60vh;
@@ -107,15 +107,13 @@
 
   <script>
       function addToList(id) {
-      // Get the checkbox
+
       var checkBox = document.getElementById(id);
-      // Get the output text
       var text = document.getElementById("text");
       var li = document.createElement("li");
       li.setAttribute("class", "list-group-item");
       li.innerText = checkBox.value;
 
-      // If the checkbox is checked, display the output text
       if (checkBox.checked === true){
         text.append(li);
       } else {
@@ -127,14 +125,13 @@
           }
         }
       }
+
     }
 
   </script>
 
 </head>
 <body>
-
-  <!-- Start your project here-->  
 
   <!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -184,16 +181,15 @@
     </ul>
   </div>
 </nav>
-<!-- Navbar -->
 
 <!-- Middle -->
 <div class="container" style="margin-top: 200px;">
-
 
   <div class="row">
     <div class="col-8">
       <h1 class="text-center mb-3">Alege ingredientele pe care le ai la dispozitie</h1>
       <form method="get" action="/OwnMeal/show-recipes">
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active elegant-text" id="produse-lactate-tab" data-toggle="tab" href="#produse-lactate" role="tab" aria-controls="produse-lactate"
@@ -216,10 +212,10 @@
                aria-selected="false">Altele</a>
           </li>
         </ul>
+
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="produse-lactate" role="tabpanel" aria-labelledby="produse-lactate-tab">
-            <div class="row">
-              <div class="col">
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn active" for="ingredientTemp" hidden>
                 <input type="checkbox" name="ingredient" id="ingredientTemp" value="VtL1kSCq4t" checked autocomplete="off">
@@ -237,12 +233,10 @@
                 <input class="tempJS" type="checkbox" name="ingredient" id="ingredient38" value="iaurt" autocomplete="off" onfocus="addToList(this.id)"> Iaurt
               </label>
             </div>
-              </div>
-            </div>
+
           </div>
           <div class="tab-pane fade" id="legume" role="tabpanel" aria-labelledby="legume-tab">
-            <div class="row">
-              <div class="col">
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-amber" for="ingredient2">
                 <input type="checkbox" name="ingredient" id="ingredient2" value="ceapa" autocomplete="off" onfocus="addToList(this.id)"> Ceapa
@@ -259,8 +253,6 @@
               <label class="btn btn-amber" for="ingredient14">
                 <input type="checkbox" name="ingredient" id="ingredient14" value="rosii" autocomplete="off" onfocus="addToList(this.id)"> Rosii
               </label>
-            </div>
-            </div>
             </div>
 
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -316,8 +308,10 @@
                 <input type="checkbox" name="ingredient" id="ingredient12" value="salata" autocomplete="off" onfocus="addToList(this.id)"> Salata
               </label>
             </div>
+
           </div>
           <div class="tab-pane fade" id="fructe" role="tabpanel" aria-labelledby="fructe-tab">
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-amber" for="ingredient6">
                 <input type="checkbox" name="ingredient" id="ingredient6" value="lamaie" autocomplete="off" onfocus="addToList(this.id)"> Lamaie
@@ -361,8 +355,10 @@
                 <input type="checkbox" name="ingredient" id="ingredient35" value="fasole" autocomplete="off" onfocus="addToList(this.id)"> Fasole
               </label>
             </div>
+
           </div>
           <div class="tab-pane fade" id="ierburi" role="tabpanel" aria-labelledby="ierburi-tab">
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-amber" for="ingredient7">
                 <input type="checkbox" name="ingredient" id="ingredient7" value="marar" autocomplete="off" onfocus="addToList(this.id)"> Marar
@@ -376,8 +372,10 @@
                 <input type="checkbox" name="ingredient" id="ingredient17" value="oregano" autocomplete="off" onfocus="addToList(this.id)"> Oregano
               </label>
             </div>
+
           </div>
           <div class="tab-pane fade" id="altele" role="tabpanel" aria-labelledby="altele-tab">
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-amber" for="ingredient18">
                 <input type="checkbox" name="ingredient" id="ingredient18" value="icre" autocomplete="off" onfocus="addToList(this.id)"> Icre
@@ -399,15 +397,16 @@
                 <input type="checkbox" name="ingredient" id="ingredient36" value="bacon" autocomplete="off" onfocus="addToList(this.id)"> Bacon
               </label>
             </div>
+
           </div>
         </div>
 
         <button type="submit" class="btn btn-outline-amber waves-effect" style="margin-top: 150px">Genereaza reteta</button>
 
-
       </form>
     </div>
     <div class="col-4">
+
       <div class="card" style="height: 420px">
         <div class="card-body" style="overflow-y:auto;">
           <h5 class="card-title text-center font-weight-bold mb-3">Ingredientele pe care le-ai ales</h5>
@@ -416,15 +415,14 @@
           </ul>
         </div>
       </div>
+
     </div>
   </div>
-
-
-
 
     <div class="card mb-3"  th:each="r : ${recipes}">
         <div class="card-body">
             <h5 class="card-title amber-text" th:text="${r.name}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${favoriteMessage}"></h6>
             <hr class="my-2">
             <h6 class="card-subtitle mb-2 mt-2 elegant-text">Ingrediente</h6>
             <p class="card-text">
@@ -438,15 +436,17 @@
                     <li th:text="${d.description}"></li>
                 </ul>
             </p>
-          <form method="get" action="/save-favorite-recipe">
-            <label>
-                <input name="recipeId" hidden th:value="${r.id}">
-            </label>
-          <button class="btn btn-amber" type="submit"><i class="fas fa-heart mr-2"></i>Salveaza la Favorite</button>
-          </form>
+            <form method="get" action="/save-favorite-recipe">
+
+              <label>
+                  <input name="recipeId" hidden th:value="${r.id}">
+              </label>
+
+              <button class="btn btn-amber" type="submit"><i class="fas fa-heart mr-2"></i>Salveaza la Favorite</button>
+
+            </form>
         </div>
     </div>
-
 
 </div>
 
@@ -461,7 +461,6 @@
       <i class="fas fa-graduation-cap ml-2"></i>
     </a>
   </div>
-  <!--/.Call to action-->
 
   <hr class="my-4">
 
@@ -470,12 +469,8 @@
     © 2020 Copyright:
     <a href="/dashboard" class="amber-text"> OwnMeal </a>
   </div>
-  <!--/.Copyright-->
 
 </footer>
-<!--/.Footer-->
-
-  <!-- End your project here-->
 
   <!-- jQuery -->
   <script type="text/javascript" src="../static/js/jquery.min.js"></script>

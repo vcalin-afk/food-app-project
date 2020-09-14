@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ro.calin.FoodApp.security.UserSession;
 import ro.calin.FoodApp.service.UserService;
 
 @Controller
@@ -14,9 +13,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    UserSession userSession;
 
     @GetMapping("/dashboard")
     public ModelAndView showDashboardPage() {
@@ -120,7 +116,7 @@ public class UserController {
 
     @GetMapping("/logout-action")
     public ModelAndView logOut() {
-        userSession.setUserId(0);
+        userService.logOut();
 
         return new ModelAndView("redirect:/login-page");
     }

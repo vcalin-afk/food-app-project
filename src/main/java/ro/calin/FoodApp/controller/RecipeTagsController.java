@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ro.calin.FoodApp.database.IngredientsFromPage;
-import ro.calin.FoodApp.database.Recipe;
-import ro.calin.FoodApp.security.UserSession;
+import ro.calin.FoodApp.service.IngredientService;
 import ro.calin.FoodApp.service.RecipeService;
 import ro.calin.FoodApp.service.UserService;
 
@@ -19,21 +17,17 @@ public class RecipeTagsController {
     RecipeService recipeService;
 
     @Autowired
-    UserSession userSession;
-
-    @Autowired
     UserService userService;
 
     @Autowired
-    IngredientsFromPage ingredientsFromPageTemp;
+    IngredientService ingredientService;
 
     @GetMapping("/OwnMeal/show-recipes")
     public ModelAndView showRecipe(@RequestParam("ingredient") List<String> ingredientsFromPage) {
 
-        ingredientsFromPageTemp.setIngredientsFromPageList(ingredientsFromPage);
+        ingredientService.addIngredientsFromOwnmealPage(ingredientsFromPage);
 
         ModelAndView modelAndView = new ModelAndView("Ownmeal");
-
         modelAndView.addObject("recipes", recipeService.getRecipesForPage(ingredientsFromPage));
 
         if (userService.verifySession()) {
@@ -46,8 +40,8 @@ public class RecipeTagsController {
 
     @GetMapping("/favorite-recipes")
     public ModelAndView showPage() {
-        ModelAndView modelAndView = new ModelAndView("FavoriteRecipes");
 
+        ModelAndView modelAndView = new ModelAndView("FavoriteRecipes");
         modelAndView.addObject("favoriteRecipe", recipeService.getRecipesForFavoritePage());
 
         if (userService.verifySession()) {
@@ -55,30 +49,21 @@ public class RecipeTagsController {
             return modelAndView;
         }
 
-        return modelAndView;
+        return new ModelAndView("redirect:/login-page");
     }
 
     @GetMapping("/save-favorite-recipe")
     public ModelAndView saveToFavorites(@RequestParam("recipeId") int recipeId) {
 
-        userSession.getFavoriteRecipes().add(recipeId);
+        recipeService.addRecipeIdToFavoriteList(recipeId);
 
-        List<String> ingredientsName = ingredientsFromPageTemp.getIngredientsFromPageList();
-        StringBuilder firstPartLink = new StringBuilder("http://localhost:8080/OwnMeal/show-recipes?");
-        for (String ingredient: ingredientsName) {
-            String secondPartLink = "ingredient=" + ingredient + "&";
-            firstPartLink.append(secondPartLink);
-        }
-
-        return new ModelAndView("redirect:" + firstPartLink);
+        return new ModelAndView("redirect:" + ingredientService.getUrlForOwnmealPage());
     }
 
     @PostMapping("/delete-favorite-recipe")
     public ModelAndView deleteFromFavorites(@RequestParam("recipeId") int recipeId) {
 
-        List<Recipe> recipeListFavorite = recipeService.getRecipesForFavoritePage();
-        List<Integer> recipeList = userSession.getFavoriteRecipes();
-        recipeList.removeAll(Collections.singletonList(recipeId));
+        recipeService.removeFavoriteRecipe(recipeId);
 
         return new ModelAndView("redirect:/favorite-recipes");
     }

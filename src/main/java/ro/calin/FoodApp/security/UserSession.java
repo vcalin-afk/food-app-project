@@ -2,7 +2,6 @@ package ro.calin.FoodApp.security;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
-import ro.calin.FoodApp.database.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;

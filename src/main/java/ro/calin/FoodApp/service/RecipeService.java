@@ -8,6 +8,7 @@ import ro.calin.FoodApp.database.RecipeDao;
 import ro.calin.FoodApp.security.UserSession;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class RecipeService {
         return new ArrayList<>(new HashSet<>(recipeForUserPage));
     }
 
-    public Recipe findById(int id) {
+    private Recipe findById(int id) {
         return recipeDao.findById(id);
     }
 
@@ -66,6 +67,15 @@ public class RecipeService {
         }
 
         return new ArrayList<>(new HashSet<>(recipeListForPage));
+    }
+
+    public void addRecipeIdToFavoriteList(int recipeId) {
+        userSession.getFavoriteRecipes().add(recipeId);
+    }
+
+    public void removeFavoriteRecipe(int recipeId) {
+        List<Integer> recipeList = userSession.getFavoriteRecipes();
+        recipeList.removeAll(Collections.singletonList(recipeId));
     }
 
 }

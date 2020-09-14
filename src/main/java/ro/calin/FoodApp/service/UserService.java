@@ -17,9 +17,6 @@ public class UserService {
     @Autowired
     UserSession userSession;
 
-    @Autowired
-    UserService userService;
-
     public void saveUser(String name, String email, String password) {
         User newUser = new User();
 
@@ -39,7 +36,7 @@ public class UserService {
     }
 
     public String getSessionUserName() {
-        Iterable<User> usersFromDatabase = userService.findAll();
+        Iterable<User> usersFromDatabase = this.findAll();
         for (User user: usersFromDatabase) {
             if (userSession.getUserId() == user.getId()) {
                 return user.getName();
@@ -49,7 +46,7 @@ public class UserService {
     }
 
     public boolean verifyLoginEmailAndPassword(String email, String password) {
-        Iterable<User> usersFromDatabase = userService.findAll();
+        Iterable<User> usersFromDatabase = this.findAll();
         for (User user: usersFromDatabase) {
             if (user.getEmail().equals(email) && user.getPassword().equals(DigestUtils.md5Hex(password))) {
                 userSession.setUserId(user.getId());
@@ -61,12 +58,16 @@ public class UserService {
     }
 
     public boolean verifyRegisterExistingEmail(String email) {
-        Iterable<User> usersFromDatabase = userService.findAll();
+        Iterable<User> usersFromDatabase = this.findAll();
         for (User user: usersFromDatabase) {
             if (user.getEmail().equals(email)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void logOut() {
+        userSession.setUserId(0);
     }
 }

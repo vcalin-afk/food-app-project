@@ -67,10 +67,10 @@
     }
 
     /*// Large devices (desktops, 992px and up)*/
-    @media (min-width: 992px) { ... }
+    /*@media (min-width: 992px) { ... }*/
 
     /*// Extra large devices (large desktops, 1200px and up)*/
-    @media (min-width: 1200px) { ... }
+    /*@media (min-width: 1200px) { ... }*/
 
     html, body, header {
       height: 60vh;
@@ -99,15 +99,14 @@
   </style>
 
   <script type="text/javascript">
-    // popovers Initialization
-    $(function () {
+
+    $(function loginPopover() {
       $('[data-toggle="popover"]').popover()
     })
+
   </script>
 </head>
 <body>
-
-  <!-- Start your project here-->  
 
   <!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -157,7 +156,6 @@
     </ul>
   </div>
 </nav>
-<!-- Navbar -->
 
       <!--Main layout-->
   <main>
@@ -185,7 +183,6 @@
               <p class="grey-text">Doar completeaza-ti lista si noi iti vom oferi o multime de idei pentru masa ta.</p>
             </div>
           </div>
-          <!--/First row-->
   
           <div style="height:30px"></div>
   
@@ -199,7 +196,6 @@
               <p class="grey-text">Urmareste reteta si nu-ti face griji pentru gust,este imposibil sa ratezi.</p>
             </div>
           </div>
-          <!--/Second row-->
   
           <div style="height:30px"></div>
   
@@ -213,10 +209,8 @@
               <p class="grey-text">Am pregatit numeroase retete, ceea ce iti va permite sa inveti sa gatesti tot felul de preparate.</p>
             </div>
           </div>
-          <!--/Third row-->
   
         </div>
-        <!--/Grid column-->
   
         <!--Grid column-->
         <div class="col-lg-6 col-md-12">
@@ -224,13 +218,10 @@
           <img id="despre-ownmeal-img" src="/img/teamsoma.png" class="img-fluid" style="height: 365px;" alt="">
           
         </div>
-        <!--/Grid column-->
   
       </div>
-      <!--/Grid row-->
   
     </section>
-    <!--Section: Main features & Quick Start-->
   
     <hr class="my-5">
   
@@ -252,7 +243,7 @@
   
         <ul class="list-group justify-content-left">
             <li class="list-group-item">
-                <div class="md-v-line"></div><i class="fas fa-user mr-5 text-info"></i><a class="amber-text" data-toggle="popover" data-placement="top" data-content="Sunteti deja logat.">Conecteaza-te</a> la contul tau.
+                <div class="md-v-line"></div><i class="fas fa-user mr-5 text-info"></i><a class="amber-text" data-toggle="popover" data-placement="top" data-content="Sunteti deja logat." onclick="loginPopover()">Conecteaza-te</a> la contul tau.
             </li>
             <li class="list-group-item">
               <div class="md-v-line"></div><i class="fas fa-chevron-circle-right mr-5 text-info"></i> Acceseaza <a class="amber-text" href="/OwnMeal">OwnMeal</a>.
@@ -269,12 +260,9 @@
           </ul>
   
       </div>
-      <!-- Grid column -->
   
     </div>
-    <!-- Grid row -->
   </div>
-  <!-- Jumbotron -->
 
   </div>
   </main>
@@ -288,7 +276,6 @@
         <i class="fas fa-chevron-circle-right"></i>
     </a>
   </div>
-  <!--/.Call to action-->
 
   <hr class="my-4">
 
@@ -297,12 +284,8 @@
     © 2020 Copyright:
     <a href="/dashboard" class="amber-text"> OwnMeal </a>
   </div>
-  <!--/.Copyright-->
 
 </footer>
-<!--/.Footer-->
-
-  <!-- End your project here-->
 
   <!-- jQuery -->
   <script type="text/javascript" src="js/jquery.min.js"></script>

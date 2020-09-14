@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class IngredientsFromPage {
+public class IngredientsFromOwnmealPage {
 
-    public List<String> ingredientsFromPageList;
+    private List<String> ingredientsFromPageList;
 
     public List<String> getIngredientsFromPageList() {
         return ingredientsFromPageList;

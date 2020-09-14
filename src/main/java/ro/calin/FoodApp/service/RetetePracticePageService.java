@@ -11,11 +11,8 @@ public class RetetePracticePageService {
     @Autowired
     private RetetePracticePageDao retetePracticePageDao;
 
-
-
     public Iterable<RetetePracticePage> findAll() {
         return retetePracticePageDao.findAll();
-
     }
 
 }
